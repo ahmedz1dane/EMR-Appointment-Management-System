@@ -1,5 +1,19 @@
 # EMR Appointment Management System
 
+> **Live Demo:** [https://emr-appointment-management-system.onrender.com](https://emr-appointment-management-system.onrender.com/login)
+>
+> *Note: The application is hosted on Render's free tier and may take up to 50 seconds to wake on first request.*
+
+### Demo Credentials
+
+| Role | Email | Password |
+|---|---|---|
+| **Super Admin** | `admin@emr.com` | `admin` |
+| **Doctor** | `john@gmail.com` | `123456` |
+| **Receptionist** | `mathew@gmail.com` | `123456` |
+
+---
+
 ## Project Overview
 This is a production-ready Appointment Management module for an Enterprise Electronic Medical Record (EMR) system. It features a complete booking workflow, user role management (Super Admin, Receptionist, Doctor), concurrent booking prevention, real-time WebSocket updates, and an audit trail mechanism.
 
