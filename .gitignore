@@ -1,0 +1,14 @@
+# Root .gitignore to catch general files at the top level
+node_modules/
+.env
+.env.*
+.DS_Store
+
+# Editor directories and files
+.vscode/
+.idea/
+*.swp
+*.swo
+
+# Optionally ignore any top-level logs
+*.log
