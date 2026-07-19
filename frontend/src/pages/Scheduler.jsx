@@ -405,7 +405,7 @@ export default function Scheduler() {
               ) : (
                 <div>
                   <div className="form-group">
-                    <label className="form-label">Full Name</label>
+                    <label className="form-label">Full Name <span style={{color:'var(--danger)'}}>*</span></label>
                     <input
                       type="text"
                       className={`form-input ${errors.patientName ? 'form-error' : ''}`}
@@ -416,7 +416,7 @@ export default function Scheduler() {
                   </div>
 
                   <div className="form-group">
-                    <label className="form-label">Mobile Number</label>
+                    <label className="form-label">Mobile Number <span style={{color:'var(--danger)'}}>*</span></label>
                     <input
                       type="tel"
                       className={`form-input ${errors.patientMobile ? 'form-error' : ''}`}

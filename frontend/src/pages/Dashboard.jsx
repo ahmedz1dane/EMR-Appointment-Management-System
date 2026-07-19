@@ -77,29 +77,31 @@ export default function Dashboard() {
             <p>No appointments yet. Use the Scheduler to book one.</p>
           </div>
         ) : (
-          <table className="data-table">
-            <thead>
-              <tr>
-                <th>Date & Time</th>
-                <th>Patient</th>
-                <th>Doctor</th>
-                <th>Status</th>
-              </tr>
-            </thead>
-            <tbody>
-              {recentAppointments.map(app => (
-                <tr key={app._id}>
-                  <td>
-                    <span style={{ fontWeight: 500 }}>{app.date}</span>
-                    <span style={{ color: 'var(--accent-primary)', marginLeft: '8px' }}>{app.time}</span>
-                  </td>
-                  <td>{app.patient?.name}</td>
-                  <td>Dr. {app.doctor?.name}</td>
-                  <td><span className={`badge ${statusBadge(app.status)}`}>{app.status}</span></td>
+          <div style={{ overflowX: 'auto' }}>
+            <table className="data-table">
+              <thead>
+                <tr>
+                  <th>Date & Time</th>
+                  <th>Patient</th>
+                  <th>Doctor</th>
+                  <th>Status</th>
                 </tr>
-              ))}
-            </tbody>
-          </table>
+              </thead>
+              <tbody>
+                {recentAppointments.map(app => (
+                  <tr key={app._id}>
+                    <td>
+                      <span style={{ fontWeight: 500 }}>{app.date}</span>
+                      <span style={{ color: 'var(--accent-primary)', marginLeft: '8px' }}>{app.time}</span>
+                    </td>
+                    <td>{app.patient?.name}</td>
+                    <td>Dr. {app.doctor?.name}</td>
+                    <td><span className={`badge ${statusBadge(app.status)}`}>{app.status}</span></td>
+                  </tr>
+                ))}
+              </tbody>
+            </table>
+          </div>
         )}
       </div>
     </div>

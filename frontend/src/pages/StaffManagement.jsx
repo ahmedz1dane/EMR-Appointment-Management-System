@@ -92,27 +92,29 @@ export default function StaffManagement() {
 
         <div className="card" style={{ overflowY: 'auto', maxHeight: '70vh' }}>
           <h3 style={{ marginBottom: '16px' }}>Existing Staff</h3>
-          <table className="data-table">
-            <thead>
-              <tr>
-                <th>Name</th>
-                <th>Role</th>
-                <th>Department</th>
-              </tr>
-            </thead>
-            <tbody>
-              {users.map(u => (
-                <tr key={u._id}>
-                  <td>
-                    <div>{u.name}</div>
-                    <div style={{ fontSize: '0.8rem', color: 'var(--text-muted)' }}>{u.email}</div>
-                  </td>
-                  <td><span className={`badge ${u.role === 'Doctor' ? 'badge-primary' : 'badge-warning'}`}>{u.role}</span></td>
-                  <td>{u.department || '-'}</td>
+          <div style={{ overflowX: 'auto' }}>
+            <table className="data-table">
+              <thead>
+                <tr>
+                  <th>Name</th>
+                  <th>Role</th>
+                  <th>Department</th>
                 </tr>
-              ))}
-            </tbody>
-          </table>
+              </thead>
+              <tbody>
+                {users.map(u => (
+                  <tr key={u._id}>
+                    <td>
+                      <div>{u.name}</div>
+                      <div style={{ fontSize: '0.8rem', color: 'var(--text-muted)' }}>{u.email}</div>
+                    </td>
+                    <td><span className={`badge ${u.role === 'Doctor' ? 'badge-primary' : 'badge-warning'}`}>{u.role}</span></td>
+                    <td>{u.department || '-'}</td>
+                  </tr>
+                ))}
+              </tbody>
+            </table>
+          </div>
         </div>
       </div>
     </div>

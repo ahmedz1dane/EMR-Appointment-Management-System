@@ -652,9 +652,60 @@ a:hover {
 }
 
 /* Responsive */
+
+/* Sidebar toggle (hamburger) — hidden on desktop */
+.sidebar-toggle {
+  display: none;
+  position: fixed;
+  top: 16px;
+  left: 16px;
+  z-index: 1001;
+  background: var(--bg-secondary);
+  border: 1px solid var(--bg-glass-border);
+  color: var(--text-primary);
+  border-radius: var(--radius-md);
+  padding: 8px;
+  cursor: pointer;
+  box-shadow: var(--shadow-md);
+  transition: background var(--transition-fast);
+}
+
+.sidebar-toggle:hover {
+  background: var(--bg-glass);
+}
+
+/* Sidebar close button — hidden on desktop */
+.sidebar-close {
+  display: none;
+  background: none;
+  border: none;
+  color: var(--text-secondary);
+  cursor: pointer;
+  padding: 4px;
+  border-radius: var(--radius-md);
+  transition: color var(--transition-fast);
+}
+
+.sidebar-close:hover {
+  color: var(--text-primary);
+}
+
+/* Sidebar overlay — hidden on desktop */
+.sidebar-overlay {
+  display: none;
+}
+
+/* Appointments table needs minimum width to not collapse */
+.data-table {
+  min-width: 600px;
+}
+
 @media (max-width: 1200px) {
   .scheduler-layout {
-    grid-template-columns: 1fr;
+    grid-template-columns: 1fr 1fr;
+  }
+  .scheduler-right {
+    grid-column: 1 / -1;
   }
   .grid-cols-4 {
     grid-template-columns: repeat(2, 1fr);
@@ -662,16 +713,197 @@ a:hover {
 }
 
 @media (max-width: 768px) {
+  /* Sidebar becomes a drawer */
   .sidebar {
-    width: 200px;
+    position: fixed;
+    top: 0;
+    left: 0;
+    bottom: 0;
+    width: 280px;
+    z-index: 1002;
+    transform: translateX(-100%);
+    transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1);
   }
+
+  .sidebar.sidebar-open {
+    transform: translateX(0);
+  }
+
+  .sidebar-toggle {
+    display: flex;
+  }
+
+  .sidebar-close {
+    display: flex;
+  }
+
+  .sidebar-overlay {
+    display: block;
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: rgba(0, 0, 0, 0.5);
+    z-index: 1001;
+    animation: fadeIn 0.2s ease;
+  }
+
+  /* Main content takes full width, add padding-top for hamburger */
   .main-content {
-    padding: 16px;
+    padding: 64px 16px 16px;
+    height: auto;
+    min-height: 100vh;
   }
+
+  /* Grid stacking */
   .grid-cols-2,
   .grid-cols-3,
   .grid-cols-4 {
     grid-template-columns: 1fr;
+  }
+
+  /* Scheduler layout stacks fully */
+  .scheduler-layout {
+    grid-template-columns: 1fr;
+  }
+
+  .scheduler-right {
+    grid-column: auto;
+  }
+
+  /* Cards reduced padding */
+  .card {
+    padding: 16px;
+  }
+
+  /* Page heading font sizes */
+  h2 {
+    font-size: 1.3rem;
+  }
+
+  /* Smaller dashboard stat values */
+  .card h3[style*="font-size: 2rem"],
+  .card h3[style*="font-size:2rem"] {
+    font-size: 1.6rem !important;
+  }
+
+  /* Filter rows: stack vertically */
+  .form-group[style*="flex: 1 1 200px"],
+  .form-group[style*="flex: 0 1 160px"],
+  .form-group[style*="flex: 0 1 180px"] {
+    flex: 1 1 100% !important;
+  }
+
+  /* Pagination row */
+  .data-table + div,
+  div[style*="justifyContent: 'space-between'"][style*="marginTop: '20px'"] {
+    flex-direction: column;
+    gap: 12px;
+    align-items: stretch !important;
+    text-align: center;
+  }
+
+  /* Auth layout (Login) — already responsive via auth-mesh-side display:none at <1024 */
+
+  /* Slot grid: smaller slots on mobile */
+  .slot-grid {
+    grid-template-columns: repeat(auto-fill, minmax(70px, 1fr));
+  }
+
+  /* Buttons — slightly larger touch targets */
+  .btn {
+    padding: 12px 18px;
+    font-size: 0.9rem;
+  }
+
+  .btn-icon {
+    padding: 10px;
+  }
+
+  /* Slot summary wraps */
+  .slot-summary {
+    flex-wrap: wrap;
+    gap: 12px;
+  }
+
+  /* Schedule Management day buttons */
+  .schedule-day-tabs {
+    flex-wrap: wrap;
+  }
+
+  /* Tables */
+  .data-table th,
+  .data-table td {
+    padding: 12px 8px;
+    font-size: 0.85rem;
+  }
+
+  /* Edit modal */
+  div[style*="alignItems: 'center'"][style*="justifyContent: 'center'"][style*="position: 'fixed'"] {
+    padding: 12px;
+  }
+
+  /* Patient mode tabs */
+  .patient-mode-tab {
+    padding: 10px 12px;
+    font-size: 0.8rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .main-content {
+    padding: 60px 12px 12px;
+  }
+
+  .card {
+    padding: 14px;
+  }
+
+  h2 {
+    font-size: 1.15rem;
+  }
+
+  .btn {
+    padding: 10px 14px;
+    font-size: 0.85rem;
+  }
+
+  /* Slot grid: even smaller */
+  .slot-grid {
+    grid-template-columns: repeat(auto-fill, minmax(60px, 1fr));
+    gap: 6px;
+  }
+
+  .slot-btn {
+    padding: 8px 2px;
+    font-size: 0.8rem;
+  }
+
+  /* Calendar days smaller on very small screens */
+  .cal-day {
+    font-size: 0.8rem;
+  }
+
+  .cal-day-label {
+    font-size: 0.65rem;
+  }
+
+  /* Search dropdown items */
+  .search-dropdown-item {
+    padding: 10px 12px;
+  }
+
+  /* Badge smaller */
+  .badge {
+    padding: 3px 8px;
+    font-size: 0.7rem;
+  }
+
+  /* Alerts */
+  .alert {
+    padding: 12px;
+    font-size: 0.85rem;
   }
 }
 
@@ -773,4 +1005,3 @@ input[type="time"]::-webkit-calendar-picker-indicator {
   color: var(--success);
   flex-shrink: 0;
 }
-
